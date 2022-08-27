@@ -6,6 +6,7 @@ import {
   CdkDropListGroup,
   CdkDragMove,
   CdkDragEnter,
+  transferArrayItem,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import { ViewportRuler } from '@angular/cdk/overlay';
@@ -20,6 +21,7 @@ export class AppComponent {
   @ViewChild(CdkDropList) placeholder: CdkDropList;
 
   public items: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  public bucket: Array<number> = [];
 
   public target: CdkDropList;
   public targetIndex: number;
@@ -40,8 +42,21 @@ export class AppComponent {
     phElement.parentElement.removeChild(phElement);
   }
 
-  add() {
-    this.items.push(this.items.length + 1);
+  // add() {
+  //   this.items.push(this.items.length + 1);
+  // }
+
+  remove(item) {
+    transferArrayItem(this.items, this.bucket, this.items.indexOf(item), 0);
+  }
+
+  addItem(item: number) {
+    transferArrayItem(
+      this.bucket,
+      this.items,
+      this.bucket.indexOf(item),
+      this.items.length + 1
+    );
   }
 
   shuffle() {

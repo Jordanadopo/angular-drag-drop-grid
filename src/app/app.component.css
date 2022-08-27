@@ -28,8 +28,9 @@
   color: rgba(0, 0, 0, 0.87);
   cursor: move;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   grid-column: span 1;
-  justify-content: center;
   align-items: center;
   text-align: center;
   background: #fff;
